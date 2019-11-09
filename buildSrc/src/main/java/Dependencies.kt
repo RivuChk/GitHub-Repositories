@@ -11,6 +11,10 @@ object Versions {
         const val espresso = "3.2.0"
         const val androidxTestExt = "1.1.1"
     }
+    object Rx {
+        const val rxJava2 = "2.2.11"
+        const val rxAndroid2 = "2.1.1"
+    }
 }
 
 object Config {
@@ -37,5 +41,9 @@ object Dependencies {
         const val androidTestRunner = "androidx.test:runner:${Versions.Test.androidTestRunner}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.Test.espresso}"
         const val androidxTestExt = "androidx.test.ext:junit:${Versions.Test.androidxTestExt}"
+    }
+    object Rx {
+        const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.Rx.rxJava2}"
+        const val rxAndroid2 = "io.reactivex.rxjava2:rxandroid:${Versions.Rx.rxAndroid2}"
     }
 }

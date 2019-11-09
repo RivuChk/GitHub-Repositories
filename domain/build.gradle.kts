@@ -26,5 +26,9 @@ android {
 dependencies {
     implementation(Dependencies.kotlin)
 
+    //Rx
+    implementation(Dependencies.Rx.rxJava2)
+    implementation(Dependencies.Rx.rxAndroid2)
+
     testImplementation(Dependencies.Test.junit)
 }
