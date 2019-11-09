@@ -5,11 +5,13 @@ import dev.rivu.githubrepositories.domain.repository.TrendingProjectRepository
 import dev.rivu.githubrepositories.domain.schedulers.SchedulerProvider
 import dev.rivu.githubrepositories.domain.usecase.BaseSingleUsecase
 import io.reactivex.Single
+import javax.inject.Inject
 
-class TrendingProjectsUsecase(
+class TrendingProjectsUsecase @Inject constructor(
     private val trendingProjectRepository: TrendingProjectRepository,
     schedulerProvider: SchedulerProvider
 ) : BaseSingleUsecase<List<TrendingProject>, TrendingProjectsUsecase.Params>(schedulerProvider) {
+
     override fun buildUseCase(param: Params): Single<List<TrendingProject>> {
         return trendingProjectRepository
             .getTrendingProjects(param.language, param.since)

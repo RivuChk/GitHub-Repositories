@@ -30,5 +30,8 @@ dependencies {
     implementation(Dependencies.Rx.rxJava2)
     implementation(Dependencies.Rx.rxAndroid2)
 
+    //Dagger
+    implementation(Dependencies.Dagger.core)
+    kapt(Dependencies.Dagger.compiler)
     testImplementation(Dependencies.Test.junit)
 }

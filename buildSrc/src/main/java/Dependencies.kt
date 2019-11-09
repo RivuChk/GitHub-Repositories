@@ -1,6 +1,8 @@
 object Versions {
     const val gradle = "3.5.2"
     const val kotlin = "1.3.50"
+    const val dagger = "2.20"
+
     object AndroidX {
         const val appCompat = "1.0.2"
         const val core = "1.0.2"
@@ -45,5 +47,9 @@ object Dependencies {
     object Rx {
         const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.Rx.rxJava2}"
         const val rxAndroid2 = "io.reactivex.rxjava2:rxandroid:${Versions.Rx.rxAndroid2}"
+    }
+    object Dagger {
+        const val core = "com.google.dagger:dagger:${Versions.dagger}"
+        const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     }
 }
