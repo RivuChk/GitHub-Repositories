@@ -33,5 +33,9 @@ dependencies {
     //Dagger
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
+
+    testImplementation(Dependencies.Test.mockito)
+    testImplementation(Dependencies.Test.mockitoKotlin)
+    testImplementation(Dependencies.Test.hamcrest)
     testImplementation(Dependencies.Test.junit)
 }

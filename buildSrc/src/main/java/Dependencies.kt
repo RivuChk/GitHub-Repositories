@@ -12,6 +12,9 @@ object Versions {
         const val androidTestRunner = "1.2.0"
         const val espresso = "3.2.0"
         const val androidxTestExt = "1.1.1"
+        const val hamcrest = "1.3"
+        const val mockito = "1.10.19"
+        const val mockitoKotlin = "1.5.0"
     }
     object Rx {
         const val rxJava2 = "2.2.11"
@@ -43,6 +46,9 @@ object Dependencies {
         const val androidTestRunner = "androidx.test:runner:${Versions.Test.androidTestRunner}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.Test.espresso}"
         const val androidxTestExt = "androidx.test.ext:junit:${Versions.Test.androidxTestExt}"
+        const val mockito = "org.mockito:mockito-core:${Versions.Test.mockito}"
+        const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.Test.mockitoKotlin}"
+        const val hamcrest = "org.hamcrest:hamcrest-all:${Versions.Test.hamcrest}"
     }
     object Rx {
         const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.Rx.rxJava2}"
