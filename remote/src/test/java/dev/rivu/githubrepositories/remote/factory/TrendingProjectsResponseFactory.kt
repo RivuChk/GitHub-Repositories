@@ -1,10 +1,11 @@
-package dev.rivu.githubrepositories.data.factory
+package dev.rivu.githubrepositories.remote.factory
 
 import dev.rivu.githubrepositories.domain.model.TrendingProject
+import dev.rivu.githubrepositories.remote.model.TrendingProjectsResponse
 
-object TrendingProjectsFactory {
-    fun makeTrendingProject(): TrendingProject {
-        return TrendingProject(
+object TrendingProjectsResponseFactory {
+    fun makeTrendingProject(): TrendingProjectsResponse {
+        return TrendingProjectsResponse(
             author = DataFactory.randomString(),
             name = DataFactory.randomString(),
             avatar = DataFactory.randomString(),
@@ -19,24 +20,24 @@ object TrendingProjectsFactory {
         )
     }
 
-    fun makeBuiltBy(): TrendingProject.BuiltBy {
-        return TrendingProject.BuiltBy(
+    fun makeBuiltBy(): TrendingProjectsResponse.BuiltBy {
+        return TrendingProjectsResponse.BuiltBy(
             username = DataFactory.randomString(),
             href = DataFactory.randomString(),
             avatar = DataFactory.randomString()
         )
     }
 
-    fun makeBuiltByList(count: Int = 10): List<TrendingProject.BuiltBy> {
-        val list = mutableListOf<TrendingProject.BuiltBy>()
+    fun makeBuiltByList(count: Int = 10): List<TrendingProjectsResponse.BuiltBy> {
+        val list = mutableListOf<TrendingProjectsResponse.BuiltBy>()
         repeat(count) {
             list.add(makeBuiltBy())
         }
         return list
     }
 
-    fun makeTrendingProjectList(count: Int = 10): List<TrendingProject> {
-        val list = mutableListOf<TrendingProject>()
+    fun makeTrendingProjectList(count: Int = 10): List<TrendingProjectsResponse> {
+        val list = mutableListOf<TrendingProjectsResponse>()
         repeat(count) {
             list.add(makeTrendingProject())
         }

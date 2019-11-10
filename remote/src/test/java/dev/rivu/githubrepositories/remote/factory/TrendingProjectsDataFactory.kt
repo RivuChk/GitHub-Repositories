@@ -1,10 +1,10 @@
-package dev.rivu.githubrepositories.data.factory
+package dev.rivu.githubrepositories.remote.factory
 
-import dev.rivu.githubrepositories.domain.model.TrendingProject
+import dev.rivu.githubrepositories.data.model.TrendingProjectData
 
-object TrendingProjectsFactory {
-    fun makeTrendingProject(): TrendingProject {
-        return TrendingProject(
+object TrendingProjectsDataFactory {
+    fun makeTrendingProject(): TrendingProjectData {
+        return TrendingProjectData(
             author = DataFactory.randomString(),
             name = DataFactory.randomString(),
             avatar = DataFactory.randomString(),
@@ -15,28 +15,28 @@ object TrendingProjectsFactory {
             stars = DataFactory.randomInt(),
             forks = DataFactory.randomInt(),
             currentPeriodStars = DataFactory.randomInt(),
-            builtBy = makeBuiltByList()
+            builtBy = makeBuiltByList(DataFactory.randomInt(1, 10))
         )
     }
 
-    fun makeBuiltBy(): TrendingProject.BuiltBy {
-        return TrendingProject.BuiltBy(
+    fun makeBuiltBy(): TrendingProjectData.BuiltBy {
+        return TrendingProjectData.BuiltBy(
             username = DataFactory.randomString(),
             href = DataFactory.randomString(),
             avatar = DataFactory.randomString()
         )
     }
 
-    fun makeBuiltByList(count: Int = 10): List<TrendingProject.BuiltBy> {
-        val list = mutableListOf<TrendingProject.BuiltBy>()
+    fun makeBuiltByList(count: Int = 10): List<TrendingProjectData.BuiltBy> {
+        val list = mutableListOf<TrendingProjectData.BuiltBy>()
         repeat(count) {
             list.add(makeBuiltBy())
         }
         return list
     }
 
-    fun makeTrendingProjectList(count: Int = 10): List<TrendingProject> {
-        val list = mutableListOf<TrendingProject>()
+    fun makeTrendingProjectList(count: Int = 10): List<TrendingProjectData> {
+        val list = mutableListOf<TrendingProjectData>()
         repeat(count) {
             list.add(makeTrendingProject())
         }
