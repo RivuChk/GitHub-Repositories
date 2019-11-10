@@ -2,6 +2,9 @@ object Versions {
     const val gradle = "3.5.2"
     const val kotlin = "1.3.50"
     const val dagger = "2.20"
+    const val retrofit = "2.6.1"
+    const val okHttp = "4.1.0"
+    const val timber = "4.7.1"
 
     object AndroidX {
         const val appCompat = "1.0.2"
@@ -37,6 +40,7 @@ object BuildScript {
 
 object Dependencies {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"
@@ -57,5 +61,11 @@ object Dependencies {
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
         const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    }
+    object Network {
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        const val okHttp = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+        const val rxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+        const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     }
 }
