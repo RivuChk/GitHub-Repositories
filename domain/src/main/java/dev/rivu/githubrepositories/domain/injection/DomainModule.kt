@@ -1,4 +1,4 @@
-package dev.rivu.githubrepositories.domain.model.injection
+package dev.rivu.githubrepositories.domain.injection
 
 import dagger.Module
 import dagger.Provides
