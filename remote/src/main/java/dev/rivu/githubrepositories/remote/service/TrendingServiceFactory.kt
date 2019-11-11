@@ -15,15 +15,15 @@ import java.util.concurrent.TimeUnit
 
 class TrendingServiceFactory(val baseUrl: String, val cacheDir: File) {
 
-    fun makeApodService(): TrendingService {
+    fun makeTrendingService(): TrendingService {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(),
             makeCache()
         )
-        return makeApodService(okHttpClient, makeGson())
+        return makeTrendingService(okHttpClient, makeGson())
     }
 
-    private fun makeApodService(okHttpClient: OkHttpClient, gson: Gson): TrendingService {
+    private fun makeTrendingService(okHttpClient: OkHttpClient, gson: Gson): TrendingService {
         return makeRetrofit(okHttpClient, gson).create(TrendingService::class.java)
     }
 
