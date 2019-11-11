@@ -1,19 +1,18 @@
 package dev.rivu.githubrepositories.trendingprojects
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dev.rivu.githubrepositories.R
+import dev.rivu.githubrepositories.base.BaseMviActivity
+import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsIntent
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsState
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModel
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModelFactory
 import dev.rivu.githubrepositories.trendingprojects.injection.inject
+import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class TrendingProjectsActivity : AppCompatActivity() {
+class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, TrendingProjectsState>() {
 
     @Inject
     lateinit var trendingProjectsViewModelFactory: TrendingProjectsViewModelFactory
@@ -23,14 +22,29 @@ class TrendingProjectsActivity : AppCompatActivity() {
             .get(TrendingProjectsViewModel::class.java)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trending_projects)
-        inject()
+    override fun layoutId(): Int = R.layout.activity_trending_projects
 
-        viewModel.states()
-            .observe(this, Observer<TrendingProjectsState> {
-                Timber.d("$it")
-            })
+    override fun initView() {
+
+    }
+
+    override fun bind() {
+        observeLiveData(viewModel.states())
+        viewModel.processIntents(intents())
+    }
+
+    override fun intents(): Observable<TrendingProjectsIntent> {
+        return Observable.just(TrendingProjectsIntent.InitialIntent)
+    }
+
+    override fun render(state: TrendingProjectsState) {
+        Timber.d("State: $state")
+        if(state.error != null) {
+            Timber.e(state.error)
+        }
+    }
+
+    override fun injectDependencies() {
+        inject()
     }
 }
