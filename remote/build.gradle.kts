@@ -19,7 +19,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "${properties["basuUrl"]}")
+        buildConfigField("String", "BASE_URL", "${properties["BASE_URL"]}")
     }
 
 }

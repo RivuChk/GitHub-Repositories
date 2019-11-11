@@ -8,14 +8,15 @@ import dev.rivu.githubrepositories.remote.model.mapper.ResponseToDataMapper
 import dev.rivu.githubrepositories.remote.service.TrendingService
 import dev.rivu.githubrepositories.remote.service.TrendingServiceFactory
 import java.io.File
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class RemoteModule(val baseUrl: String, val cacheDir: File) {
+class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideTrendingService(): TrendingService =
+    fun provideTrendingService(@Named("baseUrl") baseUrl: String, cacheDir: File): TrendingService =
         TrendingServiceFactory(baseUrl, cacheDir).makeTrendingService()
 
     @Provides
@@ -24,7 +25,7 @@ class RemoteModule(val baseUrl: String, val cacheDir: File) {
 
     @Provides
     @Singleton
-    fun providesApodRemote(
+    fun providesRemote(
         service: TrendingService,
         mapper: ResponseToDataMapper
     ): TrendingProjectsRemote =
