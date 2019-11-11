@@ -1,5 +1,8 @@
 package dev.rivu.githubrepositories.trendingprojects
 
+import android.view.Window
+import androidx.appcompat.app.ActionBar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import dev.rivu.githubrepositories.R
 import dev.rivu.githubrepositories.base.BaseMviActivity
@@ -9,6 +12,7 @@ import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProject
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModelFactory
 import dev.rivu.githubrepositories.trendingprojects.injection.inject
 import io.reactivex.Observable
+import kotlinx.android.synthetic.main.activity_trending_projects.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -25,6 +29,10 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
     override fun layoutId(): Int = R.layout.activity_trending_projects
 
     override fun initView() {
+        setSupportActionBar(toolbar)
+        toolbar.overflowIcon = ContextCompat.getDrawable(this, R.drawable.more_black)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
 
     }
 
