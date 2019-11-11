@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="titleTextColor">#25282B</color>
+    <color name="text_color_normal">#52575C</color>
+    <color name="divider_color">#E8E8E8</color>
 </resources>

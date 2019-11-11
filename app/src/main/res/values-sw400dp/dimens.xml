@@ -1,6 +1,0 @@
-<resources>
-	<dimen name="toolbar_height">62.7dp</dimen>
-	<dimen name="title_margin">15.7dp</dimen>
-	<dimen name="title_text_size">25.2sp</dimen>
-	<dimen name="margin_normal">17.9dp</dimen>
-</resources>
