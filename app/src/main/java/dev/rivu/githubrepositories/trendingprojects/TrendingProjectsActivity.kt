@@ -1,5 +1,8 @@
 package dev.rivu.githubrepositories.trendingprojects
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.Window
 import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
@@ -34,6 +37,25 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.trending, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.item_sort_name -> {
+                //TODO
+                true
+            }
+            R.id.item_sort_star -> {
+                //TODO
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun bind() {
