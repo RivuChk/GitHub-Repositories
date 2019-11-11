@@ -67,6 +67,9 @@ dependencies {
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
 
+    //Shimmer
+    implementation(Dependencies.shimmer)
+
     //Glide
     implementation(Dependencies.Glide.glide)
     kapt(Dependencies.Glide.glideCompiler)

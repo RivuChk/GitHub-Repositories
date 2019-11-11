@@ -7,6 +7,7 @@ object Versions {
     const val timber = "4.7.1"
     const val lifecycle = "2.0.0"
     const val glide = "4.9.0"
+    const val shimmer = "0.5.0@aar"
 
     object AndroidX {
         const val appCompat = "1.0.2"
@@ -48,6 +49,8 @@ object BuildScript {
 object Dependencies {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
+
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"

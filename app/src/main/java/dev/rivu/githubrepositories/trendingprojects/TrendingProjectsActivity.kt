@@ -14,6 +14,8 @@ import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProject
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModel
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModelFactory
 import dev.rivu.githubrepositories.trendingprojects.injection.inject
+import dev.rivu.githubrepositories.utils.gone
+import dev.rivu.githubrepositories.utils.visible
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_trending_projects.*
 import timber.log.Timber
@@ -68,10 +70,25 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
     }
 
     override fun render(state: TrendingProjectsState) {
-        Timber.d("State: $state")
+        Timber.d("New State: $state")
+        if(state.isLoading) {
+            showLoading()
+        } else {
+            hideLoading()
+        }
         if(state.error != null) {
             Timber.e(state.error)
         }
+    }
+
+    private fun showLoading() {
+        shimmerLayout.visible()
+        shimmerLayout.startShimmer()
+    }
+
+    private fun hideLoading() {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.gone()
     }
 
     override fun injectDependencies() {
