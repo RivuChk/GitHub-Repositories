@@ -3,4 +3,7 @@
     <string name="trending">Trending</string>
     <string name="sort_by_stars">Sort by stars</string>
     <string name="sort_by_name">Sort by name</string>
+    <string name="retry">Retry</string>
+    <string name="something_went_wrong">Something went wrong..</string>
+    <string name="an_alien_is_probably_blocing_your_signal">An alien is probably blocing your signal</string>
 </resources>

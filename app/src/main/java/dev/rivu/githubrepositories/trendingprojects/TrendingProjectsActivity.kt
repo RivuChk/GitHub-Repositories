@@ -24,7 +24,9 @@ import android.view.LayoutInflater
 import android.content.Context
 import android.os.Build
 import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
+import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
 
 
@@ -71,7 +73,11 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
                 .map {
                     TrendingProjectsIntent.ClickIntent(it.position)
                 },
-            clearClickPublisher
+            clearClickPublisher,
+            btnRetry.clicks()
+                .map {
+                    TrendingProjectsIntent.LoadIntent("", "")
+                }
         )
     }
 
@@ -82,11 +88,16 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         } else {
             hideLoading()
         }
-        if (state.error != null) {
-            Timber.e(state.error)
+        if (state.error == null) {
+            hideError()
+        } else {
+            showError(state.error)
         }
         if (state.data.isNotEmpty()) {
             showData(state.data)
+        }
+        if (state.clickedViewPosition in adapter.itemList.indices) {
+            propagateClickAndClear(state.clickedViewPosition)
         }
     }
 
@@ -126,21 +137,30 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
     }
 
     private fun hideLoading() {
-        if (swipeRefresh.isVisible()) {
-            swipeRefresh.isRefreshing = false
-        } else {
-            shimmerLayout.stopShimmer()
-            shimmerLayout.gone()
-            swipeRefresh.visible()
-        }
+        swipeRefresh.isRefreshing = false
+        shimmerLayout.stopShimmer()
+        shimmerLayout.gone()
     }
 
-    private fun performClickAndClear() {
+    private fun showError(error: Throwable?) {
+        contentTrendingProjects.gone()
+        swipeRefresh.gone()
+        errorLayout.visible()
+        Timber.e(error)
+    }
+
+    private fun hideError() {
+        contentTrendingProjects.visible()
+        errorLayout.gone()
+    }
+
+    private fun propagateClickAndClear(clickedItemPosition: Int) {
         //TODO: Expand Item
         clearClickPublisher.onNext(TrendingProjectsIntent.ClearClickIntent)
     }
 
     private fun showData(data: List<TrendingProjectPresentation>) {
+        swipeRefresh.visible()
         adapter.updateItems(data)
     }
 

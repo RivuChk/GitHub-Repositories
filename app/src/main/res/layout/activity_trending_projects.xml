@@ -43,4 +43,6 @@
 
     <include layout="@layout/content_trending_projects" />
 
+    <include layout="@layout/layout_error"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/errorLayout"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nointernet_connection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSomething"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_larger"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/something_went_wrong"
+        android:textColor="@color/error_text_color"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivError" />
+
+    <TextView
+        android:id="@+id/tvAlien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_smaller"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/an_alien_is_probably_blocing_your_signal"
+        android:textColor="@color/error_text_color_light"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSomething" />
+
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginEnd="@dimen/margin_regular"
+        android:layout_marginBottom="@dimen/margin_regular"
+        android:background="@drawable/button_border"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/retry"
+        android:textColor="@color/color_button"
+        android:textSize="@dimen/text_size_regular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

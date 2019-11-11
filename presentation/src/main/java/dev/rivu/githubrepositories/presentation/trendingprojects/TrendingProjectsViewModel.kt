@@ -44,7 +44,8 @@ class TrendingProjectsViewModel @Inject constructor(
                     )
                 is TrendingProjectsResult.LoadResult.InFlight ->
                     previousState.copy(
-                        isLoading = true
+                        isLoading = true,
+                        error = null
                     )
                 is TrendingProjectsResult.LoadResult.Failure ->
                     previousState.copy(
