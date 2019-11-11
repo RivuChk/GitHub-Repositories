@@ -8,4 +8,9 @@ data class TrendingProjectsState(
     val error: Throwable? = null,
     val clickedViewPosition: Int = -1,
     val data: List<TrendingProjectPresentation> = emptyList()
-) : MviState
+) : MviState {
+    companion object {
+        @JvmStatic
+        fun idle() = TrendingProjectsState()
+    }
+}
