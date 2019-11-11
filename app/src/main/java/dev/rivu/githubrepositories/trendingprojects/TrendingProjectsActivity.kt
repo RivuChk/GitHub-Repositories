@@ -23,6 +23,8 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.content.Context
 import android.os.Build
+import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.layout_menu.view.*
 
 
@@ -40,6 +42,10 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         TrendingProjectListAdapter()
     }
 
+    private val clearClickPublisher: PublishSubject<TrendingProjectsIntent.ClearClickIntent> by lazy {
+        PublishSubject.create<TrendingProjectsIntent.ClearClickIntent>()
+    }
+
     override fun layoutId(): Int = R.layout.activity_trending_projects
 
     override fun initView() {
@@ -55,7 +61,18 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
     }
 
     override fun intents(): Observable<TrendingProjectsIntent> {
-        return Observable.just(TrendingProjectsIntent.InitialIntent)
+        return Observable.mergeArray(
+            Observable.just(TrendingProjectsIntent.InitialIntent),
+            swipeRefresh.refreshes()
+                .map {
+                    TrendingProjectsIntent.RefreshIntent("", "")
+                },
+            adapter.clickEvent
+                .map {
+                    TrendingProjectsIntent.ClickIntent(it.position)
+                },
+            clearClickPublisher
+        )
     }
 
     override fun render(state: TrendingProjectsState) {
@@ -116,6 +133,11 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
             shimmerLayout.gone()
             swipeRefresh.visible()
         }
+    }
+
+    private fun performClickAndClear() {
+        //TODO: Expand Item
+        clearClickPublisher.onNext(TrendingProjectsIntent.ClearClickIntent)
     }
 
     private fun showData(data: List<TrendingProjectPresentation>) {
