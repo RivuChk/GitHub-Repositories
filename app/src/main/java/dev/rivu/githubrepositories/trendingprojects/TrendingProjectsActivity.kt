@@ -155,7 +155,7 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
     }
 
     private fun propagateClickAndClear(clickedItemPosition: Int) {
-        //TODO: Expand Item
+        adapter.detailPosition = clickedItemPosition
         clearClickPublisher.onNext(TrendingProjectsIntent.ClearClickIntent)
     }
 

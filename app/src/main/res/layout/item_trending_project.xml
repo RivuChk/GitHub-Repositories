@@ -5,8 +5,16 @@
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/view_background_selector">
+    android:animateLayoutChanges="true"
+    android:background="@drawable/view_background_selector"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineBottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/margin_smaller" />
 
     <ImageView
         android:id="@+id/ivAvatar"
@@ -24,7 +32,7 @@
         android:layout_marginStart="@dimen/margin_regular"
         android:layout_marginTop="@dimen/margin_regular"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/text_color_normal"
+        android:textColor="@color/text_color_regular"
         android:textSize="@dimen/text_size_small"
         app:layout_constraintStart_toEndOf="@id/ivAvatar"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,14 +44,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_regular"
         android:layout_marginTop="@dimen/margin_smallest"
-        android:layout_marginBottom="@dimen/margin_regular"
+        android:layout_marginBottom="@dimen/margin_smaller"
         android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/text_color_normal"
+        android:textColor="@color/text_color_regular"
         android:textSize="@dimen/text_size_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/detailLayout"
         app:layout_constraintStart_toEndOf="@id/ivAvatar"
         app:layout_constraintTop_toBottomOf="@id/tvAuthor"
         tools:text="Name" />
+
+
+    <include
+        android:id="@+id/detailLayout"
+        layout="@layout/item_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginBottom="@dimen/margin_smaller"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/guideLineBottom"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar" />
 
     <View
         android:layout_width="match_parent"

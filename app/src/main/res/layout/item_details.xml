@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivLanguageColor"
+        android:layout_width="@dimen/language_dot_height"
+        android:layout_height="@dimen/language_dot_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/circle"/>
+
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_smaller"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color_regular"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ivLanguageColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="C++" />
+
+    <ImageView
+        android:id="@+id/ivStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvLanguage"
+        android:src="@drawable/star_yellow"/>
+
+    <TextView
+        android:id="@+id/tvStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_smaller"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color_regular"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ivStars"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="14,236" />
+
+    <ImageView
+        android:id="@+id/ivForks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvStars"
+        android:src="@drawable/star_yellow"/>
+
+    <TextView
+        android:id="@+id/tvForks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_smaller"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color_regular"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintStart_toEndOf="@id/ivForks"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="4,236" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

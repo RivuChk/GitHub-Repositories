@@ -63,3 +63,43 @@ fun ImageView.load(
         }
         .into(this)
 }
+
+fun ImageView.load(
+    drawable: Drawable,
+    requestOptions: RequestOptions = RequestOptions.placeholderOf(R.drawable.circle),
+    transformation: BitmapTransformation? = null,
+    onLoadingFinished: (isSuccess: Boolean) -> Unit = {}
+) {
+    val listener = object : RequestListener<Drawable> {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished(false)
+            return false
+        }
+
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished(true)
+            return false
+        }
+    }
+    Glide.with(this)
+        .load(drawable)
+        .apply(requestOptions)
+        .listener(listener)
+        .apply {
+            if(transformation != null) {
+                transform(transformation)
+            }
+        }
+        .into(this)
+}

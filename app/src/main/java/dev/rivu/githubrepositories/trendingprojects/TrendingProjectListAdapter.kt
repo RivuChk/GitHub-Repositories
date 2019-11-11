@@ -1,5 +1,7 @@
 package dev.rivu.githubrepositories.trendingprojects
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +14,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.jakewharton.rxbinding3.view.clicks
 import dev.rivu.githubrepositories.R
 import dev.rivu.githubrepositories.presentation.model.TrendingProjectPresentation
+import dev.rivu.githubrepositories.utils.gone
 import dev.rivu.githubrepositories.utils.load
+import dev.rivu.githubrepositories.utils.visible
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.item_details.view.*
 import kotlinx.android.synthetic.main.item_trending_project.view.*
+import kotlin.properties.Delegates
 
 class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapter.ViewHolder>() {
 
@@ -25,6 +31,15 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
     private val clickObservable: PublishSubject<ItemClickData> = PublishSubject.create()
 
     val clickEvent: Observable<ItemClickData> = clickObservable.hide()
+
+    var detailPosition: Int by Delegates.observable(-1) { _, oldValue, newValue ->
+        if (oldValue != newValue && newValue in itemList.indices) {
+            notifyItemChanged(newValue)
+        }
+        if (oldValue in itemList.indices) {
+            notifyItemChanged(oldValue)
+        }
+    }
 
     fun updateItems(itemList: List<TrendingProjectPresentation>) {
         val diffResult =
@@ -74,6 +89,28 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
 
             itemView.tvAuthor.text = trendingProject.author
             itemView.tvName.text = trendingProject.name
+
+            if (trendingProject.languageColor.isNotBlank()) {
+                itemView.ivLanguageColor.load(
+                    ColorDrawable(Color.parseColor(trendingProject.languageColor)),
+                    RequestOptions()
+                        .centerCrop()
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.circle)
+                        .error(android.R.drawable.ic_menu_close_clear_cancel),
+                    CircleCrop()
+                )
+            }
+            itemView.tvLanguage.text = trendingProject.language
+            itemView.tvForks.text = "${trendingProject.forks}"
+            itemView.tvStars.text = "${trendingProject.stars}"
+
+            if (position == detailPosition) {
+                itemView.detailLayout.visible()
+            } else {
+                itemView.detailLayout.gone()
+            }
         }
     }
 

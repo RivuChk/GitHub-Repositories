@@ -21,4 +21,5 @@
     <dimen name="shimmer_name_width">260dp</dimen>
     <dimen name="icon_size">24dp</dimen>
     <dimen name="button_height">48dp</dimen>
+    <dimen name="language_dot_height">8dp</dimen>
 </resources>
