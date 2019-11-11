@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class DomainModule {
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun provideScheduler(): SchedulerProvider = SchedulerProviderImpl
 
 }

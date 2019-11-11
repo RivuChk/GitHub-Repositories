@@ -8,6 +8,7 @@ import dev.rivu.githubrepositories.data.source.TrendingProjectsCache
 import dev.rivu.githubrepositories.data.source.TrendingProjectsRemote
 import dev.rivu.githubrepositories.data.store.TrendingProjectsCacheDataStore
 import dev.rivu.githubrepositories.data.store.TrendingProjectsRemoteDataStore
+import dev.rivu.githubrepositories.domain.injection.FeatureScope
 import dev.rivu.githubrepositories.domain.repository.TrendingProjectRepository
 import javax.inject.Named
 import javax.inject.Singleton
@@ -16,28 +17,28 @@ import javax.inject.Singleton
 class DataModule {
 
     @Provides
-    @Singleton
+    @FeatureScope
     @Named("cache")
     fun provideTrendingProjectsCacheDataStore(trendingProjectsCache: TrendingProjectsCache): TrendingProjectsCacheDataStore {
         return TrendingProjectsCacheDataStore(trendingProjectsCache)
     }
 
     @Provides
-    @Singleton
+    @FeatureScope
     @Named("remote")
     fun provideTrendingProjectsRemoteDataStore(trendingProjectsRemote: TrendingProjectsRemote): TrendingProjectsRemoteDataStore {
         return TrendingProjectsRemoteDataStore(trendingProjectsRemote)
     }
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun providesTrendingProjectsMapper(
     ): DataToDomainMapper {
         return DataToDomainMapper()
     }
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun providesTrendingProjectsRepository(
         @Named("cache") cacheDataStore: TrendingProjectsCacheDataStore,
         @Named("remote") remoteDataStore: TrendingProjectsRemoteDataStore,
