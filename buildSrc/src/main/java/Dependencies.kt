@@ -6,10 +6,15 @@ object Versions {
     const val okHttp = "4.1.0"
     const val timber = "4.7.1"
     const val lifecycle = "2.0.0"
+    const val glide = "4.9.0"
 
     object AndroidX {
         const val appCompat = "1.0.2"
         const val core = "1.0.2"
+        const val constraintLayout = "1.1.3"
+        const val recyclerView = "1.0.0"
+        const val cardView = "1.0.0"
+        const val material = "1.0.0"
     }
     object Test {
         const val junit = "4.12"
@@ -23,6 +28,7 @@ object Versions {
     object Rx {
         const val rxJava2 = "2.2.11"
         const val rxAndroid2 = "2.1.1"
+        const val rxBinding = "3.0.0"
     }
 }
 
@@ -45,6 +51,10 @@ object Dependencies {
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
+        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
+        const val cardView = "androidx.cardview:cardview:${Versions.AndroidX.cardView}"
+        const val material = "com.google.android.material:material:${Versions.AndroidX.material}"
     }
     object Test {
         const val junit = "junit:junit:${Versions.Test.junit}"
@@ -74,5 +84,14 @@ object Dependencies {
         const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
         const val livedataRx = "androidx.lifecycle:lifecycle-reactivestreams:${Versions.lifecycle}"
         const val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+    }
+    object Glide {
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    }
+    object RxBinding {
+        const val core = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.Rx.rxBinding}"
+        const val recyclerview = "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.Rx.rxBinding}"
+        const val swiperefreshlayout = "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.Rx.rxBinding}"
     }
 }

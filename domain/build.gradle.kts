@@ -38,4 +38,6 @@ dependencies {
     testImplementation(Dependencies.Test.mockitoKotlin)
     testImplementation(Dependencies.Test.hamcrest)
     testImplementation(Dependencies.Test.junit)
+
+    api(Dependencies.timber)
 }

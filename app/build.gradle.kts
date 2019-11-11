@@ -39,11 +39,45 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":cache"))
+    implementation(project(":remote"))
+    implementation(project(":presentation"))
+
+    //Rx
+    implementation(Dependencies.Rx.rxJava2)
+    implementation(Dependencies.Rx.rxAndroid2)
+
+    implementation(Dependencies.kotlin)
+
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.core)
+    implementation(Dependencies.AndroidX.constraintLayout)
+    implementation(Dependencies.AndroidX.recyclerView)
+    implementation(Dependencies.AndroidX.material)
+    implementation(Dependencies.AndroidX.cardView)
+
+    //Arch
+    implementation(Dependencies.AndroidArch.viewModelLiveData)
+    implementation(Dependencies.AndroidArch.lifecycleRuntime)
+    implementation(Dependencies.AndroidArch.livedataRx)
+
+    //Dagger
+    implementation(Dependencies.Dagger.core)
+    kapt(Dependencies.Dagger.compiler)
+
+    //Glide
+    implementation(Dependencies.Glide.glide)
+    kapt(Dependencies.Glide.glideCompiler)
 
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.androidTestRunner)
     androidTestImplementation(Dependencies.Test.espresso)
+
+    //RxBinding
+    implementation(Dependencies.RxBinding.core)
+    implementation(Dependencies.RxBinding.recyclerview)
+    implementation(Dependencies.RxBinding.swiperefreshlayout)
 
 }

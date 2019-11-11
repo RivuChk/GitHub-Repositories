@@ -44,8 +44,6 @@ dependencies {
     implementation(Dependencies.Dagger.core)
     kapt(Dependencies.Dagger.compiler)
 
-    implementation(Dependencies.timber)
-
     testImplementation(Dependencies.Test.mockito)
     testImplementation(Dependencies.Test.mockitoKotlin)
     testImplementation(Dependencies.Test.hamcrest)
