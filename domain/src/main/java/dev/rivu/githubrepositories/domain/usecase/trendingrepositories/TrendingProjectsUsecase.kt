@@ -7,7 +7,7 @@ import dev.rivu.githubrepositories.domain.usecase.BaseSingleUsecase
 import io.reactivex.Single
 import javax.inject.Inject
 
-class TrendingProjectsUsecase @Inject constructor(
+open class TrendingProjectsUsecase @Inject constructor(
     private val trendingProjectRepository: TrendingProjectRepository,
     schedulerProvider: SchedulerProvider
 ) : BaseSingleUsecase<List<TrendingProject>, TrendingProjectsUsecase.Params>(schedulerProvider) {
