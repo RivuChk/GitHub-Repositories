@@ -1,59 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trendingprojects.TrendingProjectsActivity">
+    android:fitsSystemWindows="true">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        app:layout_constraintTop_toTopOf="parent"
-        app:contentInsetEnd="@dimen/margin_regular">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/title_margin"
-            android:text="@string/trending"
-            android:layout_gravity="center"
-            android:textColor="@color/titleTextColor"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="@dimen/title_text_size"/>
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:shimmer_duration="@integer/shimmer_duration">
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="@dimen/toolbar_height"
+            app:contentInsetEnd="@dimen/margin_regular"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
 
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
-            <include layout="@layout/item_placeholder_trending_project"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/title_margin"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/trending"
+                android:textColor="@color/titleTextColor"
+                android:textSize="@dimen/title_text_size" />
 
-        </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/content_trending_projects" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

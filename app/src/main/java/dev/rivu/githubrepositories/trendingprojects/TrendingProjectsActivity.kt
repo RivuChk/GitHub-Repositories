@@ -3,20 +3,21 @@ package dev.rivu.githubrepositories.trendingprojects
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.Window
-import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import dev.rivu.githubrepositories.R
 import dev.rivu.githubrepositories.base.BaseMviActivity
+import dev.rivu.githubrepositories.presentation.model.TrendingProjectPresentation
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsIntent
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsState
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModel
 import dev.rivu.githubrepositories.presentation.trendingprojects.TrendingProjectsViewModelFactory
 import dev.rivu.githubrepositories.trendingprojects.injection.inject
 import dev.rivu.githubrepositories.utils.gone
+import dev.rivu.githubrepositories.utils.isVisible
 import dev.rivu.githubrepositories.utils.visible
 import io.reactivex.Observable
+import kotlinx.android.synthetic.main.content_trending_projects.*
 import kotlinx.android.synthetic.main.activity_trending_projects.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -31,12 +32,17 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
             .get(TrendingProjectsViewModel::class.java)
     }
 
+    private val adapter: TrendingProjectListAdapter by lazy {
+        TrendingProjectListAdapter()
+    }
+
     override fun layoutId(): Int = R.layout.activity_trending_projects
 
     override fun initView() {
         setSupportActionBar(toolbar)
         toolbar.overflowIcon = ContextCompat.getDrawable(this, R.drawable.more_black)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        rvTrendingProjects.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,16 +85,32 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         if(state.error != null) {
             Timber.e(state.error)
         }
+        if(state.data.isNotEmpty()) {
+            showData(state.data)
+        }
     }
 
     private fun showLoading() {
-        shimmerLayout.visible()
-        shimmerLayout.startShimmer()
+        if(swipeRefresh.isVisible()) {
+            swipeRefresh.isRefreshing = true
+        } else {
+            shimmerLayout.visible()
+            shimmerLayout.startShimmer()
+        }
     }
 
     private fun hideLoading() {
-        shimmerLayout.stopShimmer()
-        shimmerLayout.gone()
+        if(swipeRefresh.isVisible()) {
+            swipeRefresh.isRefreshing = false
+        } else {
+            shimmerLayout.stopShimmer()
+            shimmerLayout.gone()
+            swipeRefresh.visible()
+        }
+    }
+
+    private fun showData(data: List<TrendingProjectPresentation>) {
+        adapter.updateItems(data)
     }
 
     override fun injectDependencies() {
