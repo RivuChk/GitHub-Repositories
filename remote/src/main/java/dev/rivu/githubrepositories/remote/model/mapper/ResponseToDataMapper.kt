@@ -31,21 +31,21 @@ open class ResponseToDataMapper : Mapper<TrendingProjectData, TrendingProjectsRe
         return TrendingProjectData(
             author = type.author,
             name = type.name,
-            avatar = type.avatar,
+            avatar = type.avatar ?: "",
             url = type.url,
-            description = type.description,
-            language = type.language,
-            languageColor = type.languageColor,
+            description = type.description ?: "",
+            language = type.language ?: "",
+            languageColor = type.languageColor ?: "",
             stars = type.stars,
             forks = type.forks,
             currentPeriodStars = type.currentPeriodStars,
-            builtBy = type.builtBy.map {
+            builtBy = type.builtBy?.map {
                 TrendingProjectData.BuiltBy(
                     username = it.username,
                     href = it.href,
                     avatar = it.avatar
                 )
-            }
+            } ?: emptyList()
         )
     }
 }

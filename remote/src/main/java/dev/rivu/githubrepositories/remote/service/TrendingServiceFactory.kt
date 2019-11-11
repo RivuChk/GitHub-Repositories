@@ -58,7 +58,9 @@ class TrendingServiceFactory(val baseUrl: String, val cacheDir: File) {
     }
 
     private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor(httpLogger)
+        val loggingInterceptor = HttpLoggingInterceptor(httpLogger)
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY //No need to check if debug, since using Timber
+        return loggingInterceptor
     }
 
     private val httpLogger: HttpLoggingInterceptor.Logger by lazy {
