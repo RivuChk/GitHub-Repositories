@@ -6,12 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionOverflowMenuStyle">@style/AppTheme.AppBarOverlay</item>
-    </style>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme.AppBarOverlay" parent="Widget.AppCompat.Light.ActionBar">
-        <item name="overlapAnchor">false</item>
     </style>
 
     <color name="white">#ffffff</color>

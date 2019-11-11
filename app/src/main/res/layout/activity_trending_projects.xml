@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -16,8 +17,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
-            app:contentInsetEnd="@dimen/margin_regular"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <TextView
@@ -29,6 +28,14 @@
                 android:text="@string/trending"
                 android:textColor="@color/titleTextColor"
                 android:textSize="@dimen/title_text_size" />
+
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/more_black"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_regular"/>
 
         </androidx.appcompat.widget.Toolbar>
 
