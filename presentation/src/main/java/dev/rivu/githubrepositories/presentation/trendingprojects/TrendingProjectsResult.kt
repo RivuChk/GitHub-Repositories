@@ -20,4 +20,8 @@ sealed class TrendingProjectsResult : MviResult {
     class ClickResult(val clickedViewPosition: Int) : TrendingProjectsResult()
 
     object ClearClickResult : TrendingProjectsResult()
+
+    data class SortResult(
+        val trendingProjects: List<TrendingProjectPresentation>
+    ) : TrendingProjectsResult()
 }

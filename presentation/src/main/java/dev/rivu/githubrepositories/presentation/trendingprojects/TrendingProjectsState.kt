@@ -7,7 +7,8 @@ data class TrendingProjectsState(
     val isLoading: Boolean = false,
     val error: Throwable? = null,
     val clickedViewPosition: Int = -1,
-    val data: List<TrendingProjectPresentation> = emptyList()
+    val data: List<TrendingProjectPresentation> = emptyList(),
+    val resetScrollState: Boolean = false
 ) : MviState {
     companion object {
         @JvmStatic

@@ -1,5 +1,6 @@
 package dev.rivu.githubrepositories.domain.usecase.trendingrepositories
 
+import dev.rivu.githubrepositories.domain.injection.FeatureScope
 import dev.rivu.githubrepositories.domain.model.TrendingProject
 import dev.rivu.githubrepositories.domain.repository.TrendingProjectRepository
 import dev.rivu.githubrepositories.domain.schedulers.SchedulerProvider
@@ -7,6 +8,7 @@ import dev.rivu.githubrepositories.domain.usecase.BaseSingleUsecase
 import io.reactivex.Single
 import javax.inject.Inject
 
+@FeatureScope
 open class TrendingProjectsUsecase @Inject constructor(
     private val trendingProjectRepository: TrendingProjectRepository,
     schedulerProvider: SchedulerProvider

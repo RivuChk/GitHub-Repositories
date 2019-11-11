@@ -30,6 +30,8 @@ class TrendingProjectsViewModel @Inject constructor(
             is TrendingProjectsIntent.RefreshIntent -> TrendingProjectsAction.LoadAction(intent.language, intent.since)
             is TrendingProjectsIntent.ClickIntent -> TrendingProjectsAction.ClickAction(intent.clickedViewPosition)
             is TrendingProjectsIntent.ClearClickIntent -> TrendingProjectsAction.ClearClickAction
+            is TrendingProjectsIntent.SortIntent.ByName -> TrendingProjectsAction.SortAction.ByName(intent.data)
+            is TrendingProjectsIntent.SortIntent.ByStars -> TrendingProjectsAction.SortAction.ByStars(intent.data)
         }
     }
 
@@ -45,7 +47,8 @@ class TrendingProjectsViewModel @Inject constructor(
                 is TrendingProjectsResult.LoadResult.InFlight ->
                     previousState.copy(
                         isLoading = true,
-                        error = null
+                        error = null,
+                        resetScrollState = false
                     )
                 is TrendingProjectsResult.LoadResult.Failure ->
                     previousState.copy(
@@ -54,11 +57,18 @@ class TrendingProjectsViewModel @Inject constructor(
                     )
                 is TrendingProjectsResult.ClickResult ->
                     previousState.copy(
-                        clickedViewPosition = result.clickedViewPosition
+                        clickedViewPosition = result.clickedViewPosition,
+                        resetScrollState = false
                     )
                 is TrendingProjectsResult.ClearClickResult ->
                     previousState.copy(
                         clickedViewPosition = -1
+                    )
+                is TrendingProjectsResult.SortResult ->
+                    previousState.copy(
+                        isLoading = false,
+                        data = result.trendingProjects,
+                        resetScrollState = true
                     )
             }
         }

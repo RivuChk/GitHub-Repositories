@@ -48,6 +48,10 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         PublishSubject.create<TrendingProjectsIntent.ClearClickIntent>()
     }
 
+    private val sortPublisher: PublishSubject<TrendingProjectsIntent.SortIntent> by lazy {
+        PublishSubject.create<TrendingProjectsIntent.SortIntent>()
+    }
+
     override fun layoutId(): Int = R.layout.activity_trending_projects
 
     override fun initView() {
@@ -77,7 +81,8 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
             btnRetry.clicks()
                 .map {
                     TrendingProjectsIntent.LoadIntent("", "")
-                }
+                },
+            sortPublisher
         )
     }
 
@@ -99,32 +104,42 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         if (state.clickedViewPosition in adapter.itemList.indices) {
             propagateClickAndClear(state.clickedViewPosition)
         }
+        if (state.resetScrollState) {
+            rvTrendingProjects.postDelayed({
+                rvTrendingProjects.smoothScrollToPosition(0)
+            }, 500)
+            //Reset scroll after 500 milliseconds, so that if adapter is sorting the result, reset'll be after that
+        }
     }
 
     private fun showPopupMenu(view: View) {
-        val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val popupView = layoutInflater.inflate(R.layout.layout_menu, null)
+        if (adapter.itemList.isNotEmpty() && !swipeRefresh.isRefreshing) {
+            val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val popupView = layoutInflater.inflate(R.layout.layout_menu, null)
 
-        val popupWindow = PopupWindow(
-            popupView,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+            val popupWindow = PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
 
-        popupWindow.isOutsideTouchable = true
-        popupView.tvMenuName.setOnClickListener {
-            //TODO: Fire Sort Intent
-            popupWindow.dismiss()
-        }
-        popupView.tvMenuStars.setOnClickListener {
-            //TODO: Fire Sort Intent
-            popupWindow.dismiss()
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            popupWindow.elevation = 10f
-        }
+            popupWindow.isOutsideTouchable = true
+            popupView.tvMenuName.setOnClickListener {
+                adapter.detailPosition = -1
+                sortPublisher.onNext(TrendingProjectsIntent.SortIntent.ByName(adapter.itemList))
+                popupWindow.dismiss()
+            }
+            popupView.tvMenuStars.setOnClickListener {
+                adapter.detailPosition = -1
+                sortPublisher.onNext(TrendingProjectsIntent.SortIntent.ByStars(adapter.itemList))
+                popupWindow.dismiss()
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                popupWindow.elevation = 10f
+            }
 
-        popupWindow.showAsDropDown(view)
+            popupWindow.showAsDropDown(view)
+        }
     }
 
     private fun showLoading() {
