@@ -5,6 +5,7 @@ object Versions {
     const val retrofit = "2.6.1"
     const val okHttp = "4.1.0"
     const val timber = "4.7.1"
+    const val lifecycle = "2.0.0"
 
     object AndroidX {
         const val appCompat = "1.0.2"
@@ -67,5 +68,11 @@ object Dependencies {
         const val okHttp = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
         const val rxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    }
+    object AndroidArch {
+        const val viewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+        const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
+        const val livedataRx = "androidx.lifecycle:lifecycle-reactivestreams:${Versions.lifecycle}"
+        const val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
     }
 }
