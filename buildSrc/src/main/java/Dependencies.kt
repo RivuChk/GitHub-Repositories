@@ -64,6 +64,7 @@ object Dependencies {
         const val junit = "junit:junit:${Versions.Test.junit}"
         const val androidTestRunner = "androidx.test:runner:${Versions.Test.androidTestRunner}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.Test.espresso}"
+        const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.Test.espresso}"
         const val androidxTestExt = "androidx.test.ext:junit:${Versions.Test.androidxTestExt}"
         const val mockito = "org.mockito:mockito-core:${Versions.Test.mockito}"
         const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.Test.mockitoKotlin}"

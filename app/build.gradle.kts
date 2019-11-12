@@ -77,6 +77,7 @@ dependencies {
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.androidTestRunner)
     androidTestImplementation(Dependencies.Test.espresso)
+    androidTestImplementation(Dependencies.Test.espressoContrib)
     androidTestImplementation(Dependencies.Network.mockWebServer)
     androidTestImplementation(Dependencies.Test.androidxTestExt)
     androidTestImplementation(Dependencies.Test.testCore)
