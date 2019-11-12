@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/text_color_regular"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="后端架构师技术图谱" />
 
     <ImageView
         android:id="@+id/ivLanguageColor"
         android:layout_width="@dimen/language_dot_height"
         android:layout_height="@dimen/language_dot_height"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_smaller"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/circle"/>
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        tools:src="@drawable/circle" />
 
     <TextView
         android:id="@+id/tvLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_smaller"
+        android:layout_marginTop="@dimen/margin_smaller"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/text_color_regular"
         android:textSize="@dimen/text_size_small"
-        app:layout_constraintStart_toEndOf="@id/ivLanguageColor"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivLanguageColor"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
         tools:text="C++" />
 
     <ImageView
@@ -33,22 +47,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_large"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_smaller"
+        android:src="@drawable/star_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvLanguage"
-        android:src="@drawable/star_yellow"/>
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
     <TextView
         android:id="@+id/tvStars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_smaller"
+        android:layout_marginTop="@dimen/margin_smaller"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/text_color_regular"
         android:textSize="@dimen/text_size_small"
-        app:layout_constraintStart_toEndOf="@id/ivStars"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivStars"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
         tools:text="14,236" />
 
     <ImageView
@@ -56,22 +72,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_large"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_smaller"
+        android:src="@drawable/star_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvStars"
-        android:src="@drawable/star_yellow"/>
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
     <TextView
         android:id="@+id/tvForks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_smaller"
+        android:layout_marginTop="@dimen/margin_smaller"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/text_color_regular"
         android:textSize="@dimen/text_size_small"
-        app:layout_constraintStart_toEndOf="@id/ivForks"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivForks"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
         tools:text="4,236" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

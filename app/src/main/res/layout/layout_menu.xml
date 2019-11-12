@@ -31,7 +31,7 @@
                 android:paddingStart="@dimen/margin_regular"
                 android:paddingEnd="@dimen/margin_regular"
                 android:text="@string/sort_by_stars"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/text_color_regular"
                 android:textSize="@dimen/text_size_regular" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:paddingStart="@dimen/margin_regular"
                 android:paddingEnd="@dimen/margin_regular"
                 android:text="@string/sort_by_name"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/text_color_regular"
                 android:textSize="@dimen/text_size_regular" />
         </LinearLayout>
 

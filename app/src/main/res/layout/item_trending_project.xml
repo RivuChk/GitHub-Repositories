@@ -57,13 +57,15 @@
     <include
         android:id="@+id/detailLayout"
         layout="@layout/item_details"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_regular"
+        android:layout_marginEnd="@dimen/margin_regular"
         android:layout_marginBottom="@dimen/margin_smaller"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/guideLineBottom"
-        app:layout_constraintStart_toEndOf="@id/ivAvatar" />
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:layout_width="match_parent"

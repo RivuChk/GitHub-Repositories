@@ -104,6 +104,7 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
                 )
             }
             itemView.tvLanguage.text = trendingProject.language
+            itemView.tvDescription.text = trendingProject.description
             itemView.tvForks.text = "${trendingProject.forks}"
             itemView.tvStars.text = "${trendingProject.stars}"
 
