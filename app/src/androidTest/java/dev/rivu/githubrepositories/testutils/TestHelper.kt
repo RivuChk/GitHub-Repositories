@@ -42,8 +42,6 @@ object TestHelper {
             mockServer.enqueue(mockResponse)
         }
 
-        Log.d("Test", "MockWebserver setup $baseURL")
-
         return mockServer
     }
 }
