@@ -90,7 +90,8 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
             itemView.tvAuthor.text = trendingProject.author
             itemView.tvName.text = trendingProject.name
 
-            if (trendingProject.languageColor.isNotBlank()) {
+            if (trendingProject.languageColor.isNotBlank() && trendingProject.languageColor.matches(
+                    Regex.fromLiteral("#([A-Fa-f0-9]{6})"))) {
                 itemView.ivLanguageColor.load(
                     ColorDrawable(Color.parseColor(trendingProject.languageColor)),
                     RequestOptions()
