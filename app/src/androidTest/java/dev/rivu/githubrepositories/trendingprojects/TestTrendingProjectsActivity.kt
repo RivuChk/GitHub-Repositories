@@ -7,8 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
@@ -117,6 +116,38 @@ class TestTrendingProjectsActivity {
             .check(matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.tvMenuName))
             .inRoot(isPlatformPopup())
+            .check(matches(ViewMatchers.isDisplayed()))
+    }
+
+    @Test
+    fun checkErrorIsDisplayed() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(500)
+        )
+
+        activityTestRule.launchActivity(Intent())
+
+        Espresso.onView(withId(R.id.errorLayout))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun checkLoadingOnRetryClick() {
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(500)
+        )
+
+        activityTestRule.launchActivity(Intent())
+
+        Espresso.onView(withId(R.id.errorLayout))
+            .check(matches(isDisplayed()))
+
+        Espresso.onView(withId(R.id.btnRetry))
+            .perform(click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.shimmerLayout))
             .check(matches(ViewMatchers.isDisplayed()))
     }
 
