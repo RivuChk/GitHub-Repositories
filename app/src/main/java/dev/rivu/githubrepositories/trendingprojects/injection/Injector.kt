@@ -6,6 +6,7 @@ import dev.rivu.githubrepositories.coreComponent
 import dev.rivu.githubrepositories.data.injection.DataModule
 import dev.rivu.githubrepositories.domain.injection.DomainModule
 import dev.rivu.githubrepositories.presentation.injection.PresentationModule
+import dev.rivu.githubrepositories.remote.injection.RemoteModule
 import dev.rivu.githubrepositories.trendingprojects.TrendingProjectsActivity
 
 fun TrendingProjectsActivity.inject() {
@@ -15,6 +16,7 @@ fun TrendingProjectsActivity.inject() {
         .dataModule(DataModule())
         .domainModule(DomainModule())
         .presentationModule(PresentationModule())
+        .remoteModule(RemoteModule())
         .trendingProjectsActivity(this)
         .build()
         .inject(this)

@@ -7,6 +7,7 @@ import dev.rivu.githubrepositories.domain.injection.DomainModule
 import dev.rivu.githubrepositories.domain.injection.FeatureScope
 import dev.rivu.githubrepositories.injection.CoreComponent
 import dev.rivu.githubrepositories.presentation.injection.PresentationModule
+import dev.rivu.githubrepositories.remote.injection.RemoteModule
 import dev.rivu.githubrepositories.trendingprojects.TrendingProjectsActivity
 
 @FeatureScope
@@ -26,5 +27,6 @@ interface TrendingProjectsComponent {
         fun dataModule(module: DataModule): Builder
         fun domainModule(module: DomainModule): Builder
         fun presentationModule(module: PresentationModule): Builder
+        fun remoteModule(remoteModule: RemoteModule): Builder
     }
 }

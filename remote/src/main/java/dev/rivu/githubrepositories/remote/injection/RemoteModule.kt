@@ -3,6 +3,7 @@ package dev.rivu.githubrepositories.remote.injection
 import dagger.Module
 import dagger.Provides
 import dev.rivu.githubrepositories.data.source.TrendingProjectsRemote
+import dev.rivu.githubrepositories.domain.injection.FeatureScope
 import dev.rivu.githubrepositories.remote.TrendingProjectsRemoteImpl
 import dev.rivu.githubrepositories.remote.model.mapper.ResponseToDataMapper
 import dev.rivu.githubrepositories.remote.service.TrendingService
@@ -15,16 +16,16 @@ import javax.inject.Singleton
 class RemoteModule {
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun provideTrendingService(@Named("baseUrl") baseUrl: String, cacheDir: File): TrendingService =
         TrendingServiceFactory(baseUrl, cacheDir).makeTrendingService()
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun provideMapper(): ResponseToDataMapper = ResponseToDataMapper()
 
     @Provides
-    @Singleton
+    @FeatureScope
     fun providesRemote(
         service: TrendingService,
         mapper: ResponseToDataMapper

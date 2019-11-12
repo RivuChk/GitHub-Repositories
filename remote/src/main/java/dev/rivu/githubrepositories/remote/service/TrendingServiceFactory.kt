@@ -3,6 +3,7 @@ package dev.rivu.githubrepositories.remote.service
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dev.rivu.githubrepositories.remote.BuildConfig
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,7 +37,10 @@ class TrendingServiceFactory(val baseUrl: String, val cacheDir: File) {
             .build()
     }
 
-    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, cache: Cache): OkHttpClient {
+    private fun makeOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        cache: Cache
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .cache(cache)
@@ -59,7 +63,8 @@ class TrendingServiceFactory(val baseUrl: String, val cacheDir: File) {
 
     private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor(httpLogger)
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY //No need to check if debug, since using Timber
+        loggingInterceptor.level =
+            HttpLoggingInterceptor.Level.BODY //No need to check if debug, since using Timber
         return loggingInterceptor
     }
 

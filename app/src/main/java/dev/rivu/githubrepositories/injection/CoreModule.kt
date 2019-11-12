@@ -9,7 +9,7 @@ import java.io.File
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [RemoteModule::class, CacheModule::class])
+@Module(includes = [CacheModule::class])
 class CoreModule(val app: GithubRepoApp) {
     @Provides
     @Singleton

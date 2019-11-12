@@ -16,7 +16,6 @@ interface CoreComponent {
     interface Builder {
         fun build(): CoreComponent
         fun coreModule(coreModule: CoreModule): Builder
-        fun remoteModule(remoteModule: RemoteModule): Builder
         fun cacheModule(cacheModule: CacheModule): Builder
     }
 
@@ -24,8 +23,6 @@ interface CoreComponent {
     fun baseUrl(): String
 
     fun cacheDir(): File
-
-    fun providesRemote(): TrendingProjectsRemote
 
     fun provideTrendingProjectsCache(): TrendingProjectsCache
 }
