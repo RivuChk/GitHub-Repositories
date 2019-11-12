@@ -16,7 +16,7 @@ android {
         versionCode = Config.versionCode
         versionName = Config.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "dev.rivu.githubrepositories.testutils.CustomTestRunner"
     }
     buildTypes {
         getByName("release") {
@@ -77,6 +77,11 @@ dependencies {
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Test.androidTestRunner)
     androidTestImplementation(Dependencies.Test.espresso)
+    androidTestImplementation(Dependencies.Network.mockWebServer)
+    androidTestImplementation(Dependencies.Test.androidxTestExt)
+    androidTestImplementation(Dependencies.Test.testCore)
+    androidTestImplementation(Dependencies.Test.testCoreKtx)
+    androidTestImplementation(Dependencies.Test.testRules)
 
     //RxBinding
     implementation(Dependencies.RxBinding.core)

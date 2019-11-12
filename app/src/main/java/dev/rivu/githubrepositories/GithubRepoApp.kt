@@ -15,7 +15,7 @@ import java.io.File
 import dev.rivu.githubrepositories.remote.BuildConfig as RemoteBuildConfig
 
 
-class GithubRepoApp: Application() {
+open class GithubRepoApp: Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -26,14 +26,13 @@ class GithubRepoApp: Application() {
 
     }
 
-    fun getBaseUrl(): String = RemoteBuildConfig.BASE_URL
+    open fun getBaseUrl(): String = RemoteBuildConfig.BASE_URL
 
     fun cacheDir(): File = this.cacheDir
 
     private val coreComponent: CoreComponent by lazy {
         DaggerCoreComponent.builder()
             .coreModule(CoreModule(this))
-            .remoteModule(RemoteModule())
             .cacheModule(CacheModule())
             .build()
     }

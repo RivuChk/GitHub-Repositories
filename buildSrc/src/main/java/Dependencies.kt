@@ -25,6 +25,7 @@ object Versions {
         const val hamcrest = "1.3"
         const val mockito = "1.10.19"
         const val mockitoKotlin = "1.5.0"
+        const val androidXTestCore = "1.2.1-alpha02"
     }
     object Rx {
         const val rxJava2 = "2.2.11"
@@ -67,6 +68,9 @@ object Dependencies {
         const val mockito = "org.mockito:mockito-core:${Versions.Test.mockito}"
         const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.Test.mockitoKotlin}"
         const val hamcrest = "org.hamcrest:hamcrest-all:${Versions.Test.hamcrest}"
+        const val testCore = "androidx.test:core:${Versions.Test.androidXTestCore}"
+        const val testCoreKtx = "androidx.test:core-ktx:${Versions.Test.androidXTestCore}"
+        const val testRules = "androidx.test:rules:${Versions.Test.androidTestRunner}"
     }
     object Rx {
         const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.Rx.rxJava2}"
@@ -81,6 +85,7 @@ object Dependencies {
         const val okHttp = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
         const val rxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
     }
     object AndroidArch {
         const val viewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
