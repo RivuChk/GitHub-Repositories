@@ -9,7 +9,7 @@ import dev.rivu.githubrepositories.presentation.base.MviIntent
 import dev.rivu.githubrepositories.presentation.base.MviState
 import dev.rivu.githubrepositories.presentation.base.MviView
 
-abstract class BaseMviActivity<I: MviIntent,S: MviState> : AppCompatActivity(),
+abstract class BaseMviActivity<I : MviIntent, S : MviState> : AppCompatActivity(),
     MviView<I, S> {
 
     final override fun onCreate(savedInstanceState: Bundle?) {

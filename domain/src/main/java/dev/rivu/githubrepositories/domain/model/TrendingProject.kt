@@ -1,7 +1,6 @@
 package dev.rivu.githubrepositories.domain.model
 
 
-
 data class TrendingProject(
     val author: String, // ansible
     val name: String, // ansible

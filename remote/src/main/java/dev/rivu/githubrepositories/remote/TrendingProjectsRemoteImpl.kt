@@ -10,6 +10,7 @@ class TrendingProjectsRemoteImpl(
     private val trendingService: TrendingService,
     private val mapper: ResponseToDataMapper
 ) : TrendingProjectsRemote {
+
     override fun getTrendingProjects(
         language: String,
         since: String
@@ -21,4 +22,5 @@ class TrendingProjectsRemoteImpl(
                 }
             }
     }
+
 }

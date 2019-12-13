@@ -10,7 +10,7 @@ open class TrendingProjectsRepositoryImpl(
     private val cacheDataStore: TrendingProjectsDataStore,
     private val remoteDataStore: TrendingProjectsDataStore,
     private val mapper: DataToDomainMapper
-): TrendingProjectRepository {
+) : TrendingProjectRepository {
 
     override fun getTrendingProjects(
         language: String,

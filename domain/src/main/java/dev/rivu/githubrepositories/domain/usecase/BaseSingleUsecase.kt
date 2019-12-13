@@ -1,7 +1,6 @@
 package dev.rivu.githubrepositories.domain.usecase
 
 import dev.rivu.githubrepositories.domain.schedulers.SchedulerProvider
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 abstract class BaseSingleUsecase<Data, in Param> constructor(private val schedulerProvider: SchedulerProvider) {

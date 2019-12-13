@@ -16,12 +16,4 @@ class PresentationModule {
     fun provideMapper(): PresentationToDomainMapper =
         PresentationToDomainMapper()
 
-    @Provides
-    @FeatureScope
-    fun provideApdListViewModelFactory(
-        actionProcessor: TrendingProjectsActionProcessor,
-        mapper: PresentationToDomainMapper
-    ): TrendingProjectsViewModelFactory =
-        TrendingProjectsViewModelFactory(actionProcessor, mapper)
-
 }

@@ -1,7 +1,16 @@
 package dev.rivu.githubrepositories.trendingprojects
 
-import android.view.*
+import android.content.Context
+import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
 import androidx.lifecycle.ViewModelProviders
+import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
+import com.jakewharton.rxbinding3.view.clicks
 import dev.rivu.githubrepositories.R
 import dev.rivu.githubrepositories.base.BaseMviActivity
 import dev.rivu.githubrepositories.presentation.model.TrendingProjectPresentation
@@ -14,34 +23,25 @@ import dev.rivu.githubrepositories.utils.gone
 import dev.rivu.githubrepositories.utils.isVisible
 import dev.rivu.githubrepositories.utils.visible
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.content_trending_projects.*
-import kotlinx.android.synthetic.main.activity_trending_projects.*
-import timber.log.Timber
-import javax.inject.Inject
-import android.widget.PopupWindow
-import android.view.ViewGroup
-import android.view.LayoutInflater
-import android.content.Context
-import android.os.Build
-import com.jakewharton.rxbinding3.swiperefreshlayout.refreshes
-import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.activity_trending_projects.*
+import kotlinx.android.synthetic.main.content_trending_projects.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_menu.view.*
-
+import timber.log.Timber
+import javax.inject.Inject
 
 class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, TrendingProjectsState>() {
 
     @Inject
     lateinit var trendingProjectsViewModelFactory: TrendingProjectsViewModelFactory
 
+    @Inject
+    lateinit var adapter: TrendingProjectListAdapter
+
     private val viewModel: TrendingProjectsViewModel by lazy {
         ViewModelProviders.of(this, trendingProjectsViewModelFactory)
             .get(TrendingProjectsViewModel::class.java)
-    }
-
-    private val adapter: TrendingProjectListAdapter by lazy {
-        TrendingProjectListAdapter()
     }
 
     private val clearClickPublisher: PublishSubject<TrendingProjectsIntent.ClearClickIntent> by lazy {
@@ -112,8 +112,12 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         }
     }
 
+    override fun injectDependencies() {
+        inject()
+    }
+
     private fun showPopupMenu(view: View) {
-        if (adapter.itemList.isNotEmpty() && !swipeRefresh.isRefreshing) {
+        if (adapter.itemList.isNotEmpty() && !swipeRefresh.isRefreshing) { //TODO: Add check, if not loading, or data is not empty
             val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val popupView = layoutInflater.inflate(R.layout.layout_menu, null)
 
@@ -169,17 +173,13 @@ class TrendingProjectsActivity : BaseMviActivity<TrendingProjectsIntent, Trendin
         errorLayout.gone()
     }
 
-    private fun propagateClickAndClear(clickedItemPosition: Int) {
-        adapter.detailPosition = clickedItemPosition
-        clearClickPublisher.onNext(TrendingProjectsIntent.ClearClickIntent)
-    }
-
     private fun showData(data: List<TrendingProjectPresentation>) {
         swipeRefresh.visible()
         adapter.updateItems(data)
     }
 
-    override fun injectDependencies() {
-        inject()
+    private fun propagateClickAndClear(clickedItemPosition: Int) {
+        adapter.detailPosition = clickedItemPosition
+        clearClickPublisher.onNext(TrendingProjectsIntent.ClearClickIntent)
     }
 }

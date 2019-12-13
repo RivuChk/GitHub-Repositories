@@ -15,7 +15,7 @@ import java.io.File
 import dev.rivu.githubrepositories.remote.BuildConfig as RemoteBuildConfig
 
 
-open class GithubRepoApp: Application() {
+open class GithubRepoApp : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {

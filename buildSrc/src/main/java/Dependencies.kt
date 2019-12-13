@@ -17,6 +17,7 @@ object Versions {
         const val cardView = "1.0.0"
         const val material = "1.0.0"
     }
+
     object Test {
         const val junit = "4.12"
         const val androidTestRunner = "1.2.0"
@@ -27,6 +28,7 @@ object Versions {
         const val mockitoKotlin = "1.5.0"
         const val androidXTestCore = "1.2.1-alpha02"
     }
+
     object Rx {
         const val rxJava2 = "2.2.11"
         const val rxAndroid2 = "2.1.1"
@@ -55,16 +57,20 @@ object Dependencies {
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
-        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
+        const val constraintLayout =
+            "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
+        const val recyclerView =
+            "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
         const val cardView = "androidx.cardview:cardview:${Versions.AndroidX.cardView}"
         const val material = "com.google.android.material:material:${Versions.AndroidX.material}"
     }
+
     object Test {
         const val junit = "junit:junit:${Versions.Test.junit}"
         const val androidTestRunner = "androidx.test:runner:${Versions.Test.androidTestRunner}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.Test.espresso}"
-        const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.Test.espresso}"
+        const val espressoContrib =
+            "androidx.test.espresso:espresso-contrib:${Versions.Test.espresso}"
         const val androidxTestExt = "androidx.test.ext:junit:${Versions.Test.androidxTestExt}"
         const val mockito = "org.mockito:mockito-core:${Versions.Test.mockito}"
         const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.Test.mockitoKotlin}"
@@ -73,14 +79,17 @@ object Dependencies {
         const val testCoreKtx = "androidx.test:core-ktx:${Versions.Test.androidXTestCore}"
         const val testRules = "androidx.test:rules:${Versions.Test.androidTestRunner}"
     }
+
     object Rx {
         const val rxJava2 = "io.reactivex.rxjava2:rxjava:${Versions.Rx.rxJava2}"
         const val rxAndroid2 = "io.reactivex.rxjava2:rxandroid:${Versions.Rx.rxAndroid2}"
     }
+
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
         const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     }
+
     object Network {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val okHttp = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
@@ -88,19 +97,25 @@ object Dependencies {
         const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
     }
+
     object AndroidArch {
-        const val viewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+        const val viewModelLiveData =
+            "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
         const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifecycle}"
         const val livedataRx = "androidx.lifecycle:lifecycle-reactivestreams:${Versions.lifecycle}"
         const val lifecycleTesting = "androidx.arch.core:core-testing:${Versions.lifecycle}"
     }
+
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
+
     object RxBinding {
         const val core = "com.jakewharton.rxbinding3:rxbinding-core:${Versions.Rx.rxBinding}"
-        const val recyclerview = "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.Rx.rxBinding}"
-        const val swiperefreshlayout = "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.Rx.rxBinding}"
+        const val recyclerview =
+            "com.jakewharton.rxbinding3:rxbinding-recyclerview:${Versions.Rx.rxBinding}"
+        const val swiperefreshlayout =
+            "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:${Versions.Rx.rxBinding}"
     }
 }

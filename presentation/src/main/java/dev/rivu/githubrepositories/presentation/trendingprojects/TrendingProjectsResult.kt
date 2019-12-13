@@ -22,6 +22,6 @@ sealed class TrendingProjectsResult : MviResult {
     object ClearClickResult : TrendingProjectsResult()
 
     data class SortResult(
-        val trendingProjects: List<TrendingProjectPresentation>
+        val trendingProjects: List<TrendingProject>
     ) : TrendingProjectsResult()
 }

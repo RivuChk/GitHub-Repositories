@@ -7,7 +7,8 @@ import io.reactivex.*
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.PublishSubject
 
-abstract class BaseViewModel<I : MviIntent, S : MviState, A : MviAction, R : MviResult> : ViewModel(),
+abstract class BaseViewModel<I : MviIntent, S : MviState, A : MviAction, R : MviResult> :
+    ViewModel(),
     MviViewModel<I, S> {
 
     private val intentsSubject: PublishSubject<I> = PublishSubject.create()

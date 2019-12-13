@@ -83,6 +83,11 @@ dependencies {
     androidTestImplementation(Dependencies.Test.testCore)
     androidTestImplementation(Dependencies.Test.testCoreKtx)
     androidTestImplementation(Dependencies.Test.testRules)
+    androidTestImplementation(Dependencies.Network.mockWebServer)
+    androidTestImplementation(Dependencies.Test.androidxTestExt)
+    androidTestImplementation(Dependencies.Test.testCore)
+    androidTestImplementation(Dependencies.Test.testCoreKtx)
+    androidTestImplementation(Dependencies.Test.testRules)
 
     //RxBinding
     implementation(Dependencies.RxBinding.core)

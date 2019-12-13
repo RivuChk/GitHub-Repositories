@@ -22,7 +22,7 @@ class RemoteModule {
 
     @Provides
     @FeatureScope
-    fun provideMapper(): ResponseToDataMapper = ResponseToDataMapper()
+    fun provideResponseToDataMapper(): ResponseToDataMapper = ResponseToDataMapper()
 
     @Provides
     @FeatureScope

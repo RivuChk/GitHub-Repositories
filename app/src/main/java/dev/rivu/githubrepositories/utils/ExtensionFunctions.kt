@@ -57,7 +57,7 @@ fun ImageView.load(
         .apply(requestOptions)
         .listener(listener)
         .apply {
-            if(transformation != null) {
+            if (transformation != null) {
                 transform(transformation)
             }
         }
@@ -97,7 +97,7 @@ fun ImageView.load(
         .apply(requestOptions)
         .listener(listener)
         .apply {
-            if(transformation != null) {
+            if (transformation != null) {
                 transform(transformation)
             }
         }

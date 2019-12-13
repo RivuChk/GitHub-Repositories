@@ -64,8 +64,8 @@
         android:layout_marginBottom="@dimen/margin_smaller"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/guideLineBottom"
-        app:layout_constraintStart_toEndOf="@id/ivAvatar"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar" />
 
     <View
         android:layout_width="match_parent"

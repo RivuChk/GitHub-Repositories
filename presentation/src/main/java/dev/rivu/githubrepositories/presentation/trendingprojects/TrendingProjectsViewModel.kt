@@ -24,14 +24,24 @@ class TrendingProjectsViewModel @Inject constructor(
     }
 
     override fun actionFromIntent(intent: TrendingProjectsIntent): TrendingProjectsAction {
-        return when(intent) {
+        return when (intent) {
             is TrendingProjectsIntent.InitialIntent -> TrendingProjectsAction.LoadAction("", "")
-            is TrendingProjectsIntent.LoadIntent -> TrendingProjectsAction.LoadAction(intent.language, intent.since)
-            is TrendingProjectsIntent.RefreshIntent -> TrendingProjectsAction.LoadAction(intent.language, intent.since)
+            is TrendingProjectsIntent.LoadIntent -> TrendingProjectsAction.LoadAction(
+                intent.language,
+                intent.since
+            )
+            is TrendingProjectsIntent.RefreshIntent -> TrendingProjectsAction.LoadAction(
+                intent.language,
+                intent.since
+            )
             is TrendingProjectsIntent.ClickIntent -> TrendingProjectsAction.ClickAction(intent.clickedViewPosition)
             is TrendingProjectsIntent.ClearClickIntent -> TrendingProjectsAction.ClearClickAction
-            is TrendingProjectsIntent.SortIntent.ByName -> TrendingProjectsAction.SortAction.ByName(intent.data)
-            is TrendingProjectsIntent.SortIntent.ByStars -> TrendingProjectsAction.SortAction.ByStars(intent.data)
+            is TrendingProjectsIntent.SortIntent.ByName -> TrendingProjectsAction.SortAction.ByName(
+                intent.data.map(mapper::mapToDomain)
+            )
+            is TrendingProjectsIntent.SortIntent.ByStars -> TrendingProjectsAction.SortAction.ByStars(
+                intent.data.map(mapper::mapToDomain)
+            )
         }
     }
 
@@ -67,7 +77,7 @@ class TrendingProjectsViewModel @Inject constructor(
                 is TrendingProjectsResult.SortResult ->
                     previousState.copy(
                         isLoading = false,
-                        data = result.trendingProjects,
+                        data = result.trendingProjects.map(mapper::mapFromDomain),
                         resetScrollState = true
                     )
             }

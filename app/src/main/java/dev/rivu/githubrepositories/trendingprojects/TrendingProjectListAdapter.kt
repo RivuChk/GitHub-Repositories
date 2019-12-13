@@ -90,8 +90,15 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
             itemView.tvAuthor.text = trendingProject.author
             itemView.tvName.text = trendingProject.name
 
-            if (trendingProject.languageColor.isNotBlank() && trendingProject.languageColor.matches(
-                    Regex.fromLiteral("#([A-Fa-f0-9]{6})"))) {
+            if (position == detailPosition) {
+                itemView.detailLayout.visible()
+            } else {
+                itemView.detailLayout.gone()
+            }
+
+            if (trendingProject.languageColor.isNotBlank()) {
+                itemView.ivLanguageColor.visible()
+                itemView.tvLanguage.visible()
                 itemView.ivLanguageColor.load(
                     ColorDrawable(Color.parseColor(trendingProject.languageColor)),
                     RequestOptions()
@@ -102,17 +109,14 @@ class TrendingProjectListAdapter : RecyclerView.Adapter<TrendingProjectListAdapt
                         .error(android.R.drawable.ic_menu_close_clear_cancel),
                     CircleCrop()
                 )
+            } else {
+                itemView.ivLanguageColor.gone()
+                itemView.tvLanguage.gone()
             }
             itemView.tvLanguage.text = trendingProject.language
             itemView.tvDescription.text = trendingProject.description
             itemView.tvForks.text = "${trendingProject.forks}"
             itemView.tvStars.text = "${trendingProject.stars}"
-
-            if (position == detailPosition) {
-                itemView.detailLayout.visible()
-            } else {
-                itemView.detailLayout.gone()
-            }
         }
     }
 

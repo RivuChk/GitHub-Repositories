@@ -33,9 +33,9 @@
                 android:id="@+id/ivMenu"
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
-                android:src="@drawable/more_black"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_regular"/>
+                android:layout_marginEnd="@dimen/margin_regular"
+                android:src="@drawable/more_black" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -43,6 +43,6 @@
 
     <include layout="@layout/content_trending_projects" />
 
-    <include layout="@layout/layout_error"/>
+    <include layout="@layout/layout_error" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

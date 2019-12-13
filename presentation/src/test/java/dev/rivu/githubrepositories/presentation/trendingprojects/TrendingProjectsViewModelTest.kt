@@ -4,7 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.*
 import dev.rivu.githubrepositories.domain.model.TrendingProject
-import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.TrendingProjectsUsecase
+import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.GetTrendingProjectsUsecase
+import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.SortTrendingProjectsUsecase
 import dev.rivu.githubrepositories.presentation.factory.TrendingProjectPresentationFactory
 import dev.rivu.githubrepositories.presentation.factory.TrendingProjectsFactory
 import dev.rivu.githubrepositories.presentation.model.TrendingProjectPresentation
@@ -20,7 +21,8 @@ class TrendingProjectsViewModelTest {
     private lateinit var actionProcessor: TrendingProjectsActionProcessor
     private lateinit var mockMapper: PresentationToDomainMapper
     private lateinit var viewModel: TrendingProjectsViewModel
-    private lateinit var mockUsecase: TrendingProjectsUsecase
+    private lateinit var mockGetTrendingProjectsUsecase: GetTrendingProjectsUsecase
+    private lateinit var mockSortTrendingProjectsUsecase: SortTrendingProjectsUsecase
     private lateinit var mockStateObserver: Observer<TrendingProjectsState>
 
     @get:Rule
@@ -29,10 +31,14 @@ class TrendingProjectsViewModelTest {
     @Before
     fun setup() {
         mockMapper = mock()
-        mockUsecase = mock()
+        mockGetTrendingProjectsUsecase = mock()
+        mockSortTrendingProjectsUsecase = mock()
         mockStateObserver = mock()
 
-        actionProcessor = TrendingProjectsActionProcessor(mockUsecase)
+        actionProcessor = TrendingProjectsActionProcessor(
+            mockGetTrendingProjectsUsecase,
+            mockSortTrendingProjectsUsecase
+        )
         viewModel = TrendingProjectsViewModel(actionProcessor, mockMapper)
 
         viewModel.states().observeForever(mockStateObserver)
@@ -150,6 +156,31 @@ class TrendingProjectsViewModelTest {
     }
 
     @Test
+    fun `test sort by intent`() {
+        val dummyData = TrendingProjectPresentationFactory.makeTrendingProjectList(2)
+        stubMapper(dummyData[0], TrendingProjectsFactory.makeTrendingProject())
+        stubMapper(dummyData[1], TrendingProjectsFactory.makeTrendingProject())
+
+        val stubSortedData = TrendingProjectsFactory.makeTrendingProjectList(2)
+        val stubSortedDataPresentation =
+            TrendingProjectPresentationFactory.makeTrendingProjectList(2)
+        stubSortUsecase(Single.just(stubSortedData))
+        stubMapper(stubSortedDataPresentation[0], stubSortedData[0])
+        stubMapper(stubSortedDataPresentation[1], stubSortedData[1])
+
+        viewModel.processIntents(Observable.just(TrendingProjectsIntent.SortIntent.ByStars(dummyData)))
+
+        verify(mockStateObserver, times(1))
+            .onChanged(
+                TrendingProjectsState(//Loading State Update
+                    isLoading = false,
+                    resetScrollState = true,
+                    data = stubSortedDataPresentation
+                )
+            )
+    }
+
+    @Test
     fun `test error state propagates when usecase emits error`() {
         val exception = Exception("test error")
 
@@ -183,8 +214,13 @@ class TrendingProjectsViewModelTest {
             .thenReturn(domainModel)
     }
 
-    private fun stubUsecase(flowable: Single<List<TrendingProject>>) {
-        whenever(mockUsecase.execute(anyOrNull(), any()))
-            .thenReturn(flowable)
+    private fun stubUsecase(single: Single<List<TrendingProject>>) {
+        whenever(mockGetTrendingProjectsUsecase.execute(anyOrNull(), any()))
+            .thenReturn(single)
+    }
+
+    private fun stubSortUsecase(single: Single<List<TrendingProject>>) {
+        whenever(mockSortTrendingProjectsUsecase.execute(anyOrNull(), any()))
+            .thenReturn(single)
     }
 }

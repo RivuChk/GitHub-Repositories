@@ -1,7 +1,9 @@
 package dev.rivu.githubrepositories.presentation.trendingprojects
 
 import dev.rivu.githubrepositories.domain.injection.FeatureScope
-import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.TrendingProjectsUsecase
+import dev.rivu.githubrepositories.domain.usecase.UsecaseExecutionType
+import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.GetTrendingProjectsUsecase
+import dev.rivu.githubrepositories.domain.usecase.trendingrepositories.SortTrendingProjectsUsecase
 import dev.rivu.githubrepositories.presentation.base.MviActionProcessor
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
@@ -9,7 +11,8 @@ import javax.inject.Inject
 
 @FeatureScope
 open class TrendingProjectsActionProcessor @Inject constructor(
-    private val usecase: TrendingProjectsUsecase
+    private val getTrendingProjectsUsecase: GetTrendingProjectsUsecase,
+    private val sorttrendingprojectsusecase: SortTrendingProjectsUsecase
 ) : MviActionProcessor<TrendingProjectsAction, TrendingProjectsResult> {
     override fun transformFromAction(): FlowableTransformer<TrendingProjectsAction, TrendingProjectsResult> {
         return FlowableTransformer { actionObservable ->
@@ -29,8 +32,8 @@ open class TrendingProjectsActionProcessor @Inject constructor(
     private fun load(): FlowableTransformer<TrendingProjectsAction.LoadAction, TrendingProjectsResult.LoadResult> {
         return FlowableTransformer { actionFlowable ->
             actionFlowable.switchMap { action ->
-                usecase.execute(
-                    TrendingProjectsUsecase.Params(
+                getTrendingProjectsUsecase.execute(
+                    GetTrendingProjectsUsecase.Params(
                         language = action.language,
                         since = action.since
                     )
@@ -68,17 +71,21 @@ open class TrendingProjectsActionProcessor @Inject constructor(
     private fun sortData(): FlowableTransformer<TrendingProjectsAction.SortAction, TrendingProjectsResult.SortResult> {
         return FlowableTransformer { actionFlowable ->
             actionFlowable.switchMap { action ->
-                val updatedData = when (action) {
-                    is TrendingProjectsAction.SortAction.ByName ->
-                        action.data.sortedBy {
-                            it.name
-                        }
-                    is TrendingProjectsAction.SortAction.ByStars ->
-                        action.data.sortedBy {
-                            it.stars
-                        }
-                }
-                Flowable.just(TrendingProjectsResult.SortResult(updatedData))
+                sorttrendingprojectsusecase
+                    .execute(
+                        SortTrendingProjectsUsecase.Params(
+                            data = action.data,
+                            sortBy = when (action) {
+                                is TrendingProjectsAction.SortAction.ByName -> SortTrendingProjectsUsecase.Params.SortBy.NAME
+                                is TrendingProjectsAction.SortAction.ByStars -> SortTrendingProjectsUsecase.Params.SortBy.STARS
+                            }
+                        ),
+                        UsecaseExecutionType.Computation
+                    )
+                    .toFlowable()
+                    .map {
+                        TrendingProjectsResult.SortResult(it)
+                    }
             }
 
         }

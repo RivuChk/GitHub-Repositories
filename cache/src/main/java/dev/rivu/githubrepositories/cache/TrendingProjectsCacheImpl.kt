@@ -8,7 +8,7 @@ import io.reactivex.Single
 
 //NOTE: Cache isn't yet implemented
 
-class TrendingProjectsCacheImpl: TrendingProjectsCache {
+class TrendingProjectsCacheImpl : TrendingProjectsCache {
     override fun getTrendingProjects(
         language: String,
         since: String

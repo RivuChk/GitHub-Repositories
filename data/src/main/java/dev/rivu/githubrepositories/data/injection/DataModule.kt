@@ -11,7 +11,6 @@ import dev.rivu.githubrepositories.data.store.TrendingProjectsRemoteDataStore
 import dev.rivu.githubrepositories.domain.injection.FeatureScope
 import dev.rivu.githubrepositories.domain.repository.TrendingProjectRepository
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 class DataModule {
@@ -32,8 +31,7 @@ class DataModule {
 
     @Provides
     @FeatureScope
-    fun providesTrendingProjectsMapper(
-    ): DataToDomainMapper {
+    fun providesDataToDomainMapper(): DataToDomainMapper {
         return DataToDomainMapper()
     }
 
